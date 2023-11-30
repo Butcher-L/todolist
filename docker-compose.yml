@@ -1,0 +1,30 @@
+version: '3'
+services:
+  todolist_dev:
+    image: mongo
+    container_name: todolist_dev
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: todolist_dev
+    ports:
+      - "27019:27017"
+    volumes:
+      - ./mongo/dev:/data/db
+
+  todolist_test:
+    image: mongo
+    container_name: todolist_test
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: todolist_test
+    ports:
+      - "27020:27017"
+    volumes:
+      - ./mongo/test:/data/db
+  # mongodb:
+  #   image: mongo
+  #   container_name: mongodb
+  #   ports:
+  #     - "27018:27017"
+  #   volumes:
+  #     - ./data:/data/db
