@@ -1,5 +1,5 @@
-import R from 'ramda';
-import UserDB from '../../models/user-db.js';
+import { pick } from 'ramda'
+import UserDB from '../../models/user-db.js'
 
 const updateUserUseCase = ({encrypt}) => {
     return async function add(id,info){
@@ -12,7 +12,7 @@ const updateUserUseCase = ({encrypt}) => {
 
       if(info.username){
         const user = await UserDB.findOne({
-          ...R.pick(['username'],info)
+          ...pick(['username'],info)
         })
 
         if(user){

@@ -1,5 +1,7 @@
-import { verify } from 'jsonwebtoken';
-require("dotenv").config();
+import  jsonwebtoken  from 'jsonwebtoken';
+import dotenv from 'dotenv'
+
+dotenv.config();
 
 export async function getAuthorization(req, res, next) {
   const bearerHeader = req.headers['authorization'];
@@ -20,7 +22,7 @@ export async function verifyToken(req, res, next) {
     if (token.startsWith('Bearer ')) {
       token = token.slice(7, token.length);
     }
-    verify(token, process.env.SECRET, (err, decoded) => {
+    jsonwebtoken.verify(token, process.env.SECRET, (err, decoded) => {
       if (err) {
         console.log("Token Expired!")
 
@@ -50,4 +52,13 @@ export async function verifyTokenUpload(token, key) {
       return true;
     }
   });
+}
+
+
+export function generateToken(user) {
+
+  return jsonwebtoken.sign({
+      _id: user._id,
+      role: user.role,
+  }, process.env.SECRET,{ expiresIn: '1h' });
 }

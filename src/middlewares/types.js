@@ -22,7 +22,7 @@ const Role = {
   Admin: 'ADMIN'
 }
 
-export default { 
+export { 
   TransactionType, 
   Transaction, 
   RoleType,
