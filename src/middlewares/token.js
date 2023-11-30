@@ -44,16 +44,6 @@ export async function verifyToken(req, res, next) {
   }
 }
 
-export async function verifyTokenUpload(token, key) {
-  return await verify(token, key, async (err, authData) => {
-    if (err) {
-      return false;
-    } else {
-      return true;
-    }
-  });
-}
-
 
 export function generateToken(user) {
 
