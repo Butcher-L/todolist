@@ -14,7 +14,8 @@ const deleteUserUseCase = () => {
         },
         {
           $set:{
-            active: false
+            active: false,
+            dateTimeUpdated: Date.now()
           }
         })
       

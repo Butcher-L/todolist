@@ -3,12 +3,19 @@ import  makeTransaction  from "../../entities/transactions/index.js";
 
 const addTransactionUseCase = ({generateId, Prefix, Transaction}) => {
     return async function add(info){
-        const transactionEntity = makeTransaction(info);
+        
+        const data = {
+            ...info,
+            user: info.decoded._id
+        }
+        const transactionEntity = makeTransaction(data); 
+
         const transaction = await TransactionDB.findOne({
-            name : info.name,
-            user: info.user,
+            name : data.name,
+            user: data.user,
             status: Transaction.Todo,
         })
+
         if(transaction){
             throw new Error('Transaction already exists')
         }
@@ -16,9 +23,10 @@ const addTransactionUseCase = ({generateId, Prefix, Transaction}) => {
         const id = generateId(Prefix.Transaction)
 
         await TransactionDB.create({
-            ...info,
+            ...data,
             _id:id,
             status: Transaction.Todo,
+            user: data.user,
             dateTimeCreated: Date.now(),
             dateTimeUpdated: Date.now(),
         })

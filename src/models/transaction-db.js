@@ -38,6 +38,14 @@ const schema = new Schema(
       type: Date,
       required: true,
     },
+    deletedBy:{
+      type: String,
+      default: null,
+    },
+    updatedBy:{
+      type: String,
+      default: null,
+    }
 
   },
   { toJSON, _id: false },
