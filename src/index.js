@@ -9,13 +9,15 @@ import  MongooseService  from './middlewares/mongo/mongoose.js'
 
 import usersRouter from './api/user.js'
 import loginRouter from './api/login.js'
+import transactionRouter from './api/transactions.js'
 
 const app = express();
 
 app.use(express.json());
 
-app.use('/users', usersRouter);
+app.use('/users', usersRouter)
 app.use('/login', loginRouter)
+app.use('/transactions', transactionRouter)
 
 const PORT = process.env.PORT || 3000;
 

@@ -1,7 +1,7 @@
 import { Schema } from 'mongoose';
 import { model } from 'mongoose';
 
-import mongooseUtil from '../middlewares/mongo/mongoose';
+import mongooseUtil from '../middlewares/mongo/mongoose.js';
 
 const { toJSON } = mongooseUtil;
 
@@ -21,6 +21,14 @@ const schema = new Schema(
     },
     status: {
       type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+    },
+    deleted:{
+      type: Boolean,
+      default: false
     },
     dateTimeCreated: {
       type: Date,
