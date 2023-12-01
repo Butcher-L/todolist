@@ -3,19 +3,6 @@ import dotenv from 'dotenv'
 
 dotenv.config();
 
-// export async function getAuthorization(req, res, next) {
-//   const bearerHeader = req.headers['authorization'];
-//   if (typeof bearerHeader !== 'undefined') {
-//     const bearer = bearerHeader.split(' ');
-//     const bearerToken = bearer[1];
-//     req.token = bearerToken;
-
-//     next();
-//   } else {
-//     res.sendStatus(403);
-//   }
-// }
-
 export async function verifyToken(req, res, next) {
   let token = req.headers['x-access-token'] || req.headers['authorization'];
   if (token) {
@@ -26,7 +13,7 @@ export async function verifyToken(req, res, next) {
       if (err) {
         console.log("Token Expired!")
 
-        return res.status(200).json({
+        return res.status(400).json({
           success: false,
           message: 'Token is not valid',
           error: err.toString()
@@ -37,7 +24,7 @@ export async function verifyToken(req, res, next) {
       }
     });
   } else {
-    return res.status(200).json({
+    return res.status(400).json({
       success: false,
       message: 'Auth token is not supplied'
     });

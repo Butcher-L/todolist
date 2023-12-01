@@ -9,16 +9,16 @@ const uri =  process.env.NODE_ENV==='test'
   : process.env.MONGODB_URI || `mongodb://127.0.0.1:27017/${process.env.MONGODB}` 
 
 // Connect to the MongoDB server and the specified database using Mongoose
-  connect(uri, {
-   useNewUrlParser: true, 
-   useUnifiedTopology: true, 
-   dbName: process.env.NODE_ENV==='test'? process.env.MONGODBTEST : process.env.MONGODB })
-  .then(() => {
-    console.log('Connected to the database!');
-  })
-  .catch((err) => {
-    console.error('Failed to connect to the database:', err);
-  });
+  try {
+    await connect(uri, {
+      useNewUrlParser: true, 
+      useUnifiedTopology: true, 
+      dbName: process.env.NODE_ENV==='test'? process.env.MONGODBTEST : process.env.MONGODB })
+   
+      console.log('Connected to the database!');
+  } catch (error) {
+      throw new Error('Failed to connect to the database:', error);
+  }
 }
  
 
