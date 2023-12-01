@@ -5,11 +5,16 @@
             source.ip = httpRequest.ip;
             source.browser = httpRequest.headers["User-Agent"];
 
+            const data = {
+                ...info,
+                decoded : httpRequest.decoded,
+            }
+
             if(httpRequest.headers["Referrer"]){
                 source.referrer = httpRequest.headers["Referrer"];
             };          
  
-            const posted = await addUserUseCase(info);
+            const posted = await addUserUseCase(data);
 
             return {
                 headers: {

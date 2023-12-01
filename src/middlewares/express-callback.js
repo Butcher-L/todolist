@@ -4,6 +4,7 @@ export default function ExpressCallback (controller) {
         body: req.body,
         query: req.query,
         params: req.params,
+        decoded: req.decoded,
         headers: {
           "SessionId": req.get("SessionId"),
           "Content-Type": req.get("Content-Type"),

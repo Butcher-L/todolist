@@ -7,11 +7,15 @@ const router = Router();
 import {
     addUserController,
     getUsersController,
-    updateUserController
+    updateUserController,
+    deleteUserController,
+    getUserController
 }  from '../controllers/users/index.js';
 
-router.post('/add-user', ExpressCallback(addUserController));
+router.post('/add-user', verifyToken, ExpressCallback(addUserController));
 router.get('/', verifyToken, ExpressCallback(getUsersController));
 router.put('/update/:id', verifyToken, ExpressCallback(updateUserController));
+router.delete('/delete/:id', verifyToken, ExpressCallback(deleteUserController))
+router.get('/:id', verifyToken, ExpressCallback(getUserController))
 
 export default router;

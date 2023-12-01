@@ -39,6 +39,10 @@ const schema = new Schema(
       type: Date,
       default: null,
     },
+    active: {
+      type: Boolean,
+      default: true
+    },
     dateTimeCreated: {
       type: Date,
       required: true,

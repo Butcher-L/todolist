@@ -3,18 +3,18 @@ import dotenv from 'dotenv'
 
 dotenv.config();
 
-export async function getAuthorization(req, res, next) {
-  const bearerHeader = req.headers['authorization'];
-  if (typeof bearerHeader !== 'undefined') {
-    const bearer = bearerHeader.split(' ');
-    const bearerToken = bearer[1];
-    req.token = bearerToken;
+// export async function getAuthorization(req, res, next) {
+//   const bearerHeader = req.headers['authorization'];
+//   if (typeof bearerHeader !== 'undefined') {
+//     const bearer = bearerHeader.split(' ');
+//     const bearerToken = bearer[1];
+//     req.token = bearerToken;
 
-    next();
-  } else {
-    res.sendStatus(403);
-  }
-}
+//     next();
+//   } else {
+//     res.sendStatus(403);
+//   }
+// }
 
 export async function verifyToken(req, res, next) {
   let token = req.headers['x-access-token'] || req.headers['authorization'];

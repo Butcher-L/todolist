@@ -4,12 +4,15 @@ const getUsers = ({ getUsersUseCase }) => {
           const {source = {}, ...info} = httpRequest.body;
           source.ip = httpRequest.ip;
           source.browser = httpRequest.headers["User-Agent"];
-          const query = httpRequest.query
+          const data = {
+            query: httpRequest.query,
+            decoded: httpRequest.decoded
+          }
 
           if(httpRequest.headers["Referrer"]){
               source.referrer = httpRequest.headers["Referrer"];
           };
-          const fetched = await getUsersUseCase(query);
+          const fetched = await getUsersUseCase(data);
 
           return {
               headers: {

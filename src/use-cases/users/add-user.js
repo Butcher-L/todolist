@@ -1,8 +1,14 @@
 import UserDB from '../../models/user-db.js';
 import makeUser from "../../entities/users/index.js";
+import { Role } from '../../middlewares/types.js'
 
 const addUserUseCase = ({ encrypt, generateId , Prefix}) => {
     return async function add(info){
+   
+        if(info.decoded.role != Role.Admin){
+            throw new Error('Not Authorize')
+        }
+
         const userEntity = makeUser(info);
         
         const user = await UserDB.findOne({
@@ -19,7 +25,7 @@ const addUserUseCase = ({ encrypt, generateId , Prefix}) => {
         })
 
         if(username){
-            throw new Error('username already exists')
+            throw new Error('Username already exists')
         }
 
         const id = generateId(Prefix.User)
