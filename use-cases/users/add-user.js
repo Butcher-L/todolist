@@ -5,9 +5,9 @@ import { Role } from '../../middlewares/types.js'
 const addUserUseCase = ({ encrypt, generateId , Prefix}) => {
     return async function add(info){
    
-        if(info.decoded.role != Role.Admin){
-            throw new Error('Not Authorize')
-        }
+        // if(info.decoded.role != Role.Admin){
+        //     throw new Error('Not Authorize')
+        // }
 
         const userEntity = makeUser(info);
         
