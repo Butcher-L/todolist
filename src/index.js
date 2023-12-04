@@ -5,8 +5,6 @@ import dotenv from 'dotenv'
 dotenv.config();
 import  MongooseService  from './middlewares/mongo/mongoose.js'
 
-// const { MongooseService } = require('./middlewares/mongo/mongoose').default; 
-
 import usersRouter from './api/user.js'
 import loginRouter from './api/login.js'
 import transactionRouter from './api/transactions.js'
