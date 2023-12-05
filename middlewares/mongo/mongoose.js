@@ -1,20 +1,20 @@
-import { connect } from 'mongoose';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 
 dotenv.config();
 
 async function MongooseService() {
-const uri =  
+const uri = process.env.MONGODB_URI 
 // process.env.NODE_ENV==='test' 
 //   ?  `mongodb://127.0.0.1:27017/todolist_test`
   // :
-   process.env.MONGODB_URI 
+  //  process.env.MONGODB_URI 
   //  || `mongodb://127.0.0.1:27017/${process.env.MONGODB}` 
 
   console.log(uri)
 // Connect to the MongoDB server and the specified database using Mongoose
   try {
-    await mongoose.connect(process.env.MONGODB_CONNECT_URI)
+    await mongoose.connect(uri)
     console.log("Connect to MongoDB successfully")
   } catch (error) {
     throw new Error("Connect failed " + error.message )
