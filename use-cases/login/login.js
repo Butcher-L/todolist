@@ -3,7 +3,6 @@ import makeLogin from '../../entities/login/index.js';
 
 const loginUseCase = ({ encrypt ,generateToken }) => {
   return async function login(info){
-
     const userExist = await UserDB.findOne({
         username : info.username,
     })

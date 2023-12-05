@@ -29,8 +29,8 @@ app.listen(PORT, async () => {
   await Connect()
 
   console.log(`Server is listening on port ${PORT}.`);
+  console.log(`Server is connecting to db: ${ process.env.NODE_ENV==='test'? process.env.MONGODBTEST : process.env.MONGODB}.`);
 });
 
-console.log(`Server is connecting to db: ${ process.env.NODE_ENV==='test'? process.env.MONGODBTEST : process.env.MONGODB}.`);
 
 export default app;
