@@ -16,6 +16,6 @@ router.post('/add-user', ExpressCallback(addUserController));
 router.get('/', verifyToken, ExpressCallback(getUsersController));
 router.put('/update/:id', verifyToken, ExpressCallback(updateUserController));
 router.delete('/delete/:id', verifyToken, ExpressCallback(deleteUserController))
-router.get('/:id', verifyToken, ExpressCallback(getUserController))
+router.get('/:id', ExpressCallback(getUserController))
 
 export default router;
