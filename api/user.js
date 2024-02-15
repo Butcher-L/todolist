@@ -13,9 +13,9 @@ import {
 }  from '../controllers/users/index.js';
 
 router.post('/add-user', ExpressCallback(addUserController));
-router.get('/', verifyToken, ExpressCallback(getUsersController));
+router.get('/', ExpressCallback(getUsersController));
 router.put('/update/:id', verifyToken, ExpressCallback(updateUserController));
 router.delete('/delete/:id', verifyToken, ExpressCallback(deleteUserController))
-router.get('/:id', ExpressCallback(getUserController))
+router.get('/:id', verifyToken, ExpressCallback(getUserController))
 
 export default router;
